@@ -1,0 +1,8 @@
+<h1>Name: {{user.username}}</h1>
+<h5>Age: {{user.age}}</h5>
+<h3>Languages: </h3>
+<ol>
+  {{#user.languages}}
+  <li>{{.}}</li>
+  {{/user.languages}}
+</ul>

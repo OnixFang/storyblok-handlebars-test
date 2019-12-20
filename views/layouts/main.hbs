@@ -7,7 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
 
-  <link rel="stylesheet" href="css/materialize.min.css">
+  {{!-- Materialize CSS --}}
+  <link rel="stylesheet" href="/css/materialize.min.css">
+
+  {{!-- Material Icons --}}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="brown lighten-5">
@@ -18,8 +22,8 @@
           <a href="/" class="brand-logo">Home</a>
         </div>
         <ul id="nav-mobile" class="right">
-          <li><a href="technologies">Technologies</a></li>
-          <li><a href="about">About</a></li>
+          <li><a href="/technologies">Technologies</a></li>
+          <li><a href="/about">About</a></li>
         </ul>
       </div>
     </div>
@@ -27,7 +31,7 @@
 
   {{{ body }}}
 
-  <script src="js/materialize.min.js"></script>
+  <script src="/js/materialize.min.js"></script>
 </body>
 
 </html>
