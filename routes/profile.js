@@ -19,6 +19,10 @@ const profiles = [
   }
 ];
 
+router.get('/', (req, res) => {
+  res.render('profile-list', { profiles });
+});
+
 router.get('/:username', (req, res) => {
   const user = profiles.find((element) => {
     return element.username == req.params.username;
