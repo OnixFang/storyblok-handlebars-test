@@ -25,9 +25,16 @@ app.engine('hbs', exphbs(
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// Middlewares
+function timestampGenerator(req, res, next) {
+  const timestamp = new Date();
+  req.timestamp = timestamp.toString();
+  next();
+}
+
 // Routes
 app.use('/', indexRoutes);
-app.use('/profiles', profileRoutes);
+app.use('/profiles', timestampGenerator, profileRoutes);
 
 // Server Launch
 const port = process.env.PORT;

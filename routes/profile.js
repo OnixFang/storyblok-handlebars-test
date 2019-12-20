@@ -20,7 +20,10 @@ const profiles = [
 ];
 
 router.get('/', (req, res) => {
-  res.render('profile-list', { profiles });
+  res.render('profile-list', {
+    profiles,
+    timestamp: req.timestamp
+  });
 });
 
 router.get('/:username', (req, res) => {
@@ -31,7 +34,8 @@ router.get('/:username', (req, res) => {
   if (user) {
     res.render('profile', {
       title: 'Profiles',
-      user
+      user,
+      timestamp: req.timestamp
     });
   } else {
     res.send('Profile not found');
