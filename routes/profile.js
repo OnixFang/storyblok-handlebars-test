@@ -1,45 +1,37 @@
 const express = require('express');
 const router = express.Router();
-
-const profiles = [
-  {
-    username: "onixfang",
-    age: 25,
-    languages: ['JavaScript', 'C#']
-  },
-  {
-    username: "bizantron",
-    age: 26,
-    languages: ['JavaScript', 'C#']
-  },
-  {
-    username: "bearcub",
-    age: 26,
-    languages: ['JavaScript', 'C#']
-  }
-];
+const { Storyblok } = require('../middlewares/storyblok');
 
 router.get('/', (req, res) => {
-  res.render('profile-list', {
-    profiles,
-    timestamp: req.timestamp
-  });
+  Storyblok
+    .get('cdn/stories/profiles', { version: 'published' })
+    .then((response) => {
+      res.render('profile-list', {
+        profiles: response.data.story.content.body,
+        timestamp: req.timestamp
+      });
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+
 });
 
 router.get('/:username', (req, res) => {
-  const user = profiles.find((element) => {
-    return element.username == req.params.username;
-  });
+  const user = req.params.username;
 
-  if (user) {
-    res.render('profile', {
-      title: 'Profiles',
-      user,
-      timestamp: req.timestamp
+  Storyblok
+    .get(`cdn/stories/profiles/${user}`, { version: 'published' })
+    .then((response) => {
+      res.render('profile', {
+        title: 'Profiles',
+        user: response.data.story.content,
+        timestamp: req.timestamp
+      });
+    })
+    .catch((error) => {
+      res.send('Profile not found');
     });
-  } else {
-    res.send('Profile not found');
-  }
 });
 
 module.exports = router;
