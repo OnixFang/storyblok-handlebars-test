@@ -3,43 +3,7 @@
 </div>
 
 <div class="row">
-  <div class="col s3">
-    <div class="card">
-      <div class="card-image">
-        <img src="images/nodejs.png" alt="node.js">
-        <span class="card-title black-text">Node.js</span>
-      </div>
-      <div class="card-content teal lighten-3">
-        <p>As an asynchronous event-driven JavaScript runtime, Node.js is designed to build scalable network
-          applications. In the following "hello world" example, many connections can be handled concurrently.
-          Upon each connection, the callback is fired, but if there is no work to be done, Node.js will sleep.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col s3">
-    <div class="card">
-      <div class="card-image">
-        <img src="images/expressjs.png" alt="express.js">
-        <span class="card-title black-text">Express.js</span>
-      </div>
-      <div class="card-content teal lighten-3">
-        <p>Express.js, or simply Express, is a web application framework for Node.js, released as free and open-source
-          software under the MIT License. It is designed for building web applications and APIs. It has been called the
-          de facto standard server framework for Node.js.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col s3">
-    <div class="card">
-      <div class="card-image">
-        <img src="images/handlebars.png" alt="handlebars">
-        <span class="card-title black-text">Handlebars</span>
-      </div>
-      <div class="card-content teal lighten-3">
-        <p>Handlebars provides the power necessary to let you build semantic templates effectively with no frustration.
-          Handlebars is largely compatible with Mustache templates. In most cases it is possible to swap out Mustache
-          with Handlebars and continue using your current templates.</p>
-      </div>
-    </div>
-  </div>
+  {{#each story.content.body}}
+  {{> (lookup . 'component')}}
+  {{/each}}
 </div>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { Storyblok } = require('../middlewares/storyblok');
 
 router.get('/', (req, res) => {
   res.render('home', {
@@ -15,9 +16,17 @@ router.get('/about', (req, res) => {
 });
 
 router.get('/technologies', (req, res) => {
-  res.render('technologies', {
-    title: 'Technologies'
-  });
+  Storyblok
+    .get('cdn/stories/technologies', { version: 'published' })
+    .then((response) => {
+      res.render('technologies', {
+        title: 'Technologies',
+        story: response.data.story
+      });
+    })
+    .catch((error) => {
+      res.send(error);
+    });
 });
 
 router.post('/', (req, res) => {
