@@ -5,6 +5,9 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const app = express();
 
+// Middlewares
+const { timestampGenerator } = require('./middlewares/timestamp');
+
 // Route modules
 const indexRoutes = require('./routes/index');
 const profileRoutes = require('./routes/profile');
@@ -24,13 +27,6 @@ app.engine('hbs', exphbs(
 ));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
-// Middlewares
-function timestampGenerator(req, res, next) {
-  const timestamp = new Date();
-  req.timestamp = timestamp.toString();
-  next();
-}
 
 // Routes
 app.use('/', indexRoutes);
