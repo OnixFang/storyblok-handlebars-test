@@ -29,6 +29,19 @@ router.get('/technologies', (req, res) => {
     });
 });
 
+router.post('/site_search', (req, res) => {
+  const searchTerm = req.body.searchterm;
+
+  Storyblok
+    .get(`cdn/stories?search_term=${searchTerm}`)
+    .then((response) => {
+      res.json(response.data.stories);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
 router.post('/', (req, res) => {
   const body = req.body;
 
