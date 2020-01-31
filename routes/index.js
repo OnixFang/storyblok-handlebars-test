@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { Storyblok } = require('../middlewares/storyblok');
 
+// Webhooks
+router.post('/clear-cache', (req, res) => {
+  console.log('Post for wekhook triggered');
+  res.set('content-type', 'application/json');
+  res.sendStatus(202);
+});
+
 router.get('/', (req, res) => {
   res.render('home', {
     title: 'Home'
